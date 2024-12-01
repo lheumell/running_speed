@@ -1,14 +1,16 @@
 "use client";
 
-const Select = ({ items, label }: { items: string[]; label: string }) => {
+const Select = ({ items }: { items: string[] }) => {
   return (
     <div>
       <label
         htmlFor="HeadlineAct"
         className="block text-sm font-medium text-gray-900"
       >
-        {label}
+        {" "}
+        Headliner{" "}
       </label>
+
       <select
         name="HeadlineAct"
         id="HeadlineAct"

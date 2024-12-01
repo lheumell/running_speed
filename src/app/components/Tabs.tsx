@@ -11,18 +11,7 @@ const Tabs = ({
 }) => {
   return (
     <div className="">
-      <div className="sm:hidden">
-        <label htmlFor="Tab" className="sr-only">
-          Tab
-        </label>
-
-        <select id="Tab" className="w-full rounded-md border-gray-200">
-          <option selected>Heures</option>
-          <option>Allure</option>
-        </select>
-      </div>
-
-      <div className="hidden sm:block">
+      <div>
         <div className="">
           <nav className="flex">
             {items.map((item) => (
