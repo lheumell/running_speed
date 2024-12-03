@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 
 interface BlogPostProps {
   params: Promise<{ slug: string }>;
@@ -37,10 +38,10 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { data: frontMatter, content } = matter(markdownWithMeta);
 
   return (
-    <div className="h-screen my-24 w-[900px] m-auto">
+    <div className="h-min-screen my-24 w-[900px] m-auto">
       <h1>{frontMatter.title}</h1>
       <p>{frontMatter.date}</p>
-      <article>{content}</article>
+      <ReactMarkdown>{content}</ReactMarkdown>
     </div>
   );
 }

@@ -1,9 +1,11 @@
 "use client";
 
+import { useCallback, useEffect, useMemo, useState } from "react";
+
 import Input from "@/app/components/Input";
 import Tabs from "@/app/components/Tabs";
 import Card from "@/app/components/Card";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 const TAB = {
   TIME: "Temps",
@@ -243,9 +245,10 @@ export default function SpeedCalculator() {
 
   return (
     <div className="min-h-screen pb-20 gap-16 px-10 py-6 sm:px-20 sm:py-12 font-[family-name:var(--font-geist-sans)]">
-      <h1 className="font-bold text-[48px] pb-12 text-run-800">
-        Calculateur d’allure de course
-      </h1>
+      <header>
+        <h1>Calculateur d’Allure Running – Trouvez votre rythme parfait</h1>
+        <p>Optimisez vos performances avec notre outil simple et rapide.</p>
+      </header>
       <main className="grid grid-cols-12 grid-rows-1 gap-8 w-full">
         <div className="col-span-12 md:col-span-8 flex flex-col gap-4">
           <div className="bg-run-200 rounded-2xl p-8 w-full md:w-fit border-2 border-black shadow-[3px_5px_0px_2px_black]">
@@ -279,9 +282,43 @@ export default function SpeedCalculator() {
           </div>
         </div>
       </main>
+      <section>
+        <h2>Articles connexes</h2>
+        <ul>
+          <li>
+            <Link href="/blog/allure-course-a-pied">
+              Pourquoi l’allure est essentielle pour progresser
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog/semi-marathon">
+              Plan d’entraînement semi-marathon
+            </Link>
+          </li>
+        </ul>
+      </section>
       <div className="flex justify-center items-center h-24 mt-48 gap-8">
-        <Card title="CARD BLOG" />
+        Articles en liens :
+        <Card title="Découvrez comment créer un plan d’entraînement adapté à votre allure." />
         <Card title="CARD PAS BLOG" />
+        <a>lien vers tous les blogs</a>
+      </div>
+      <section>
+        <h2>Comment utiliser notre calculateur ?</h2>
+        <p>
+          Entrez la distance de votre course et votre temps prévu pour connaître
+          votre allure idéale.
+        </p>
+      </section>
+      <section>
+        <h2>Pourquoi connaître son allure ?</h2>
+        <p>
+          Comprendre votre allure est essentiel pour atteindre vos objectifs de
+          course à pied.
+        </p>
+      </section>
+      <div>
+        <h3>Partagez votre allure</h3> avec balise OG
       </div>
     </div>
   );
