@@ -193,12 +193,11 @@ export default function SpeedCalculator() {
   const renderResultTime = useMemo(() => {
     return (
       <>
-        <div className="flex flex-col text-center">
+        <div className="flex flex-col text-center text-neutral">
           <h2 className="font-semibold">Vitesse Moyenne</h2>
           <p className="text-[36px]">{resultTime.speed} km/h</p>
         </div>
-
-        <div className="flex  gap-12">
+        <div className="flex gap-12 text-neutral">
           <div className="flex flex-col">
             <h2 className="text-center">Allure</h2>
             <p className="text-[24px]">{resultTime.pace} min/km</p>{" "}
@@ -215,14 +214,13 @@ export default function SpeedCalculator() {
   const renderResultPace = useMemo(() => {
     return (
       <>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center text-neutral">
           <h2 className="font-semibold">Temps</h2>
           <p className="text-[36px]">
             {resultPace.hours}h {resultPace.minutes}min {resultPace.seconds}sec
           </p>
         </div>
-
-        <div className="flex flex-col text-center">
+        <div className="flex flex-col text-center text-neutral">
           <h2>Vitesse Moyenne</h2>
           <p className="text-[24px]">{resultPace.averageSpeed} km/h</p>
         </div>
@@ -244,82 +242,93 @@ export default function SpeedCalculator() {
   }, [renderResultPace, renderResultTime, selectedItem]);
 
   return (
-    <div className="min-h-screen pb-20 gap-16 px-10 py-6 sm:px-20 sm:py-12 font-[family-name:var(--font-geist-sans)]">
+    <div className="min-h-screen pb-20 gap-16 px-10 py-6 sm:px-20 sm:py-12 font-[family-name:var(--font-geist-sans)] bg-run-50">
       <header>
-        <h1>Calculateur d’Allure Running – Trouvez votre rythme parfait</h1>
-        <p>Optimisez vos performances avec notre outil simple et rapide.</p>
+        <h1 className="font-bold text-[32px] text-neutral">
+          Calculateur d’Allure Running – Trouvez votre rythme parfait
+        </h1>
+        <h3 className="font-semibold text-[24px] pb-24 text-run-600">
+          Optimisez vos performances avec notre outil simple et rapide.
+        </h3>
       </header>
-      <main className="grid grid-cols-12 grid-rows-1 gap-8 w-full">
-        <div className="col-span-12 md:col-span-8 flex flex-col gap-4">
-          <div className="bg-run-200 rounded-2xl p-8 w-full md:w-fit border-2 border-black shadow-[3px_5px_0px_2px_black]">
-            <Input
-              value={distance}
-              label="mètres"
-              onChange={handleChangeDistance}
-            />
+      <main>
+        <section className="grid grid-cols-12 grid-rows-1 gap-8 w-full">
+          <div className="col-span-12 md:col-span-8 flex flex-col gap-4">
+            <div className="bg-run-100 rounded-2xl p-8 w-full md:w-fit border-2 border-neutral shadow-[3px_5px_0px_2px_black]">
+              <Input
+                value={distance}
+                label="mètres"
+                onChange={handleChangeDistance}
+              />
+            </div>
+            <div>
+              <Tabs
+                items={[
+                  { label: "Temps", color: "bg-run-500" },
+                  { label: "Allure", color: "bg-run-400" },
+                ]}
+                selectedItem={selectedItem}
+                onClick={(item) => setSelectedItem(item)}
+              />
+              {renderContentTab}
+            </div>
           </div>
-          <div>
-            <Tabs
-              items={[
-                { label: "Temps", color: "bg-run-500" },
-                { label: "Allure", color: "bg-run-400" },
-              ]}
-              selectedItem={selectedItem}
-              onClick={(item) => setSelectedItem(item)}
-            />
-            {renderContentTab}
+          <div className="bg-run-600 rounded-2xl p-4 w-full col-span-12 md:col-span-4 shadow-[3px_5px_0px_2px_black]">
+            <div
+              className="rounded-2xl inset-0 h-full w-full flex flex-col items-center justify-center"
+              style={{
+                backgroundImage:
+                  "linear-gradient(transparent 0%, rgb(146, 63, 14) 100%)",
+              }}
+            >
+              {renderResult}
+            </div>
           </div>
-        </div>
-        <div className="bg-run-600 rounded-2xl p-4 w-full col-span-12 md:col-span-4 shadow-[3px_5px_0px_2px_black]">
-          <div
-            className="rounded-2xl inset-0 h-full w-full flex flex-col items-center justify-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(transparent 0%, rgb(146, 63, 14) 100%)",
-            }}
-          >
-            {renderResult}
-          </div>
-        </div>
+        </section>
+        <section className="mt-24 flex flex-col items-center">
+          <h2 className="font-semibold text-[24px] pb-12 text-run-600">
+            Articles connexes
+          </h2>
+          <ul className="flex justify-center items-center gap-8">
+            <li>
+              <Card title="Découvrez comment créer un plan d’entraînement adapté à votre allure." />
+              {/* <Link href="/blog/allure-course-a-pied">
+                Pourquoi l’allure est essentielle pour progresser
+              </Link> */}
+            </li>
+            <li>
+              <Card title="Plan d’entraînement semi-marathon" />
+              {/* <Link href="/blog/semi-marathon">
+                Plan d’entraînement semi-marathon
+              </Link> */}
+            </li>
+          </ul>
+          <Link className="my-8 underline" href="/blogs">
+            lien vers tous les blogs
+          </Link>
+        </section>
+        <section className="mt-24">
+          <h2 className="font-semibold text-[24px] pb-12 text-run-600">
+            Comment utiliser notre calculateur ?
+          </h2>
+          <p>
+            Entrez la distance de votre course et votre temps prévu pour
+            connaître votre allure idéale.
+          </p>
+        </section>
+        <section className="mt-24">
+          <h2 className="font-semibold text-[24px] pb-12 text-run-600">
+            Pourquoi connaître son allure ?
+          </h2>
+          <p>
+            Comprendre votre allure est essentiel pour atteindre vos objectifs
+            de course à pied.
+          </p>
+        </section>
+        <section className="mt-24">
+          <h3>Partagez votre allure</h3> avec balise OG
+        </section>
       </main>
-      <section>
-        <h2>Articles connexes</h2>
-        <ul>
-          <li>
-            <Link href="/blog/allure-course-a-pied">
-              Pourquoi l’allure est essentielle pour progresser
-            </Link>
-          </li>
-          <li>
-            <Link href="/blog/semi-marathon">
-              Plan d’entraînement semi-marathon
-            </Link>
-          </li>
-        </ul>
-      </section>
-      <div className="flex justify-center items-center h-24 mt-48 gap-8">
-        Articles en liens :
-        <Card title="Découvrez comment créer un plan d’entraînement adapté à votre allure." />
-        <Card title="CARD PAS BLOG" />
-        <a>lien vers tous les blogs</a>
-      </div>
-      <section>
-        <h2>Comment utiliser notre calculateur ?</h2>
-        <p>
-          Entrez la distance de votre course et votre temps prévu pour connaître
-          votre allure idéale.
-        </p>
-      </section>
-      <section>
-        <h2>Pourquoi connaître son allure ?</h2>
-        <p>
-          Comprendre votre allure est essentiel pour atteindre vos objectifs de
-          course à pied.
-        </p>
-      </section>
-      <div>
-        <h3>Partagez votre allure</h3> avec balise OG
-      </div>
     </div>
   );
 }

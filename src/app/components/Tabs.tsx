@@ -19,8 +19,8 @@ const Tabs = ({
                 onClick={() => onClick(item.label)}
                 className={
                   selectedItem === item.label
-                    ? `${item.color} cursor-pointer -mb-px shrink-0 rounded-t-lg p-3 text-sm font-medium text-white w-24 text-center`
-                    : `${item.color} mt-1 rounded-t-lg cursor-pointer -mb-px shrink-0 border border-transparent p-3 text-sm font-medium text-gray-500 hover:text-gray-700 w-24 text-center`
+                    ? `${item.color} cursor-pointer -mb-px shrink-0 rounded-t-lg p-3 text-sm font-medium text-run-50 w-24 text-center`
+                    : `${item.color} mt-1 rounded-t-lg cursor-pointer -mb-px shrink-0 border border-transparent p-3 text-sm font-medium text-neutral hover:text-gray-700 w-24 text-center`
                 }
                 key={item.label}
               >

@@ -17,7 +17,7 @@ const Input = ({
         type="number"
         id="UserEmail"
         value={value || undefined}
-        className={`${className} bg-transparent border-b border-black text-center w-full`}
+        className={`${className} bg-transparent border-b border-neutral text-center w-full`}
         onChange={(e) => onChange(e.target.value)}
       />
       <span>{label}</span>

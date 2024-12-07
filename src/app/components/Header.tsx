@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="bg-white">
+    <header className="border-b-2 border-neutral bg-run-800">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
@@ -26,10 +26,10 @@ const Header = () => {
 
           <div className="hidden md:block">
             <nav aria-label="Global" className="hidden md:block">
-              <ul className="flex items-center gap-6 text-sm">
+              <ul className="flex items-center gap-6 text-md">
                 <li>
                   <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
+                    className="text-run-50 font-bold transition hover:text-run-50/75"
                     href="/"
                   >
                     {" "}
@@ -39,7 +39,7 @@ const Header = () => {
 
                 <li>
                   <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
+                    className="text-run-50 font-bold transition hover:text-run-50/75"
                     href="/speed-calculator"
                   >
                     {" "}
@@ -48,7 +48,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
+                    className="text-run-50 font-bold transition hover:text-run-50/75"
                     href="/blog"
                   >
                     {" "}
@@ -57,7 +57,7 @@ const Header = () => {
                 </li>
                 <li>
                   <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
+                    className="text-run-50 font-bold transition hover:text-run-50/75"
                     href="/about"
                   >
                     {" "}

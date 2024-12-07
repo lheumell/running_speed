@@ -1,19 +1,58 @@
 "use client";
 
-const Button = ({ onClick }: { onClick: () => void }) => {
-  return (
-    <a
-      className="group relative inline-block text-sm font-medium text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-      onClick={onClick}
-    >
-      <span className="absolute inset-0 translate-x-0 translate-y-0 bg-indigo-600 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5"></span>
+import { ReactNode, useMemo } from "react";
 
-      <span className="relative block border border-current bg-white px-8 py-3">
-        {" "}
-        Download{" "}
-      </span>
-    </a>
+type TVariant = {
+  PRIMARY: ReactNode;
+  SECONDARY: ReactNode;
+};
+const Button = ({
+  onClick,
+  children,
+  variant = "primary",
+}: {
+  onClick: () => void;
+  children: ReactNode;
+  variant?: "primary" | "secondary";
+}) => {
+  const primaryButton = useMemo(
+    () => (
+      <a
+        className="w-full bg-run-800 text-run-50 font-semibold rounded-lg flex items-center justify-center border-2 border-neutral shadow-[1px_1px_0px_2px_black] rounded-lg hover:shadow-[3px_3px_0px_2px_black] p-4"
+        onClick={onClick}
+      >
+        {children}
+      </a>
+    ),
+    [children, onClick]
   );
+
+  const secondaryButton = useMemo(
+    () => (
+      <a
+        className="w-full font-semibold  flex items-center justify-center border-2 border-neutral shadow-[1px_1px_0px_2px_black] rounded-lg hover:shadow-[3px_3px_0px_2px_black] p-4"
+        onClick={onClick}
+      >
+        {children}
+      </a>
+    ),
+    [children, onClick]
+  );
+
+  const VARIANT = useMemo(
+    () => ({
+      PRIMARY: primaryButton,
+      SECONDARY: secondaryButton,
+    }),
+    [primaryButton, secondaryButton]
+  );
+
+  const renderButton = useMemo(
+    () => VARIANT[variant.toUpperCase() as keyof TVariant],
+    [VARIANT, variant]
+  );
+
+  return renderButton;
 };
 
 export default Button;
